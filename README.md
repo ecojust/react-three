@@ -47,6 +47,10 @@ In the project directory, you can run:
 #### /src/utils  
 这个文件夹下面已存在的文件，你最好不要动，它这个项目的核所在！
 
+## 项目预览
+
+![avatar](/public/temp.jpg)
+
 ## 结语
 最后，希望大家都能开心的敲代码！
 
