@@ -35,8 +35,11 @@ In the project directory, you can run:
 
 还需注意的是，有两个文件夹/文件的位置最好不要随便移动，它们分别是：
 
-#### /src/redux/index.js  不难看出，这是redux的文件目录，我们在MiddleComponent.js文件中用相对路径引入了它，所以，你最好不要移动它
-#### /src/utils  这个文件夹下面已存在的文件，你最好不要动，它这个项目的核所在！
+#### /src/redux/index.js  
+不难看出，这是redux的文件目录，我们在MiddleComponent.js文件中用相对路径引入了它，所以，你最好不要移动它
+
+#### /src/utils  
+这个文件夹下面已存在的文件，你最好不要动，它这个项目的核所在！
 
 ## 结语
 最后，希望大家都能开心的敲代码！
