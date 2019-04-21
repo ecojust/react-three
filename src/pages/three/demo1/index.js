@@ -1,10 +1,7 @@
 
 import {MiddleComponent,React} from '../../../utils/MiddleComponent'
 
-
-
 import * as THREE from "three"
-
 export class demo1 extends MiddleComponent {
 	constructor(props){
 		super(props);
@@ -17,7 +14,7 @@ export class demo1 extends MiddleComponent {
     this.mouse = null;
     this.height = null;
     this.width = null;
-    console.log(this.$route);
+    console.log(this.$store);
 	}
 	
 
@@ -34,10 +31,6 @@ export class demo1 extends MiddleComponent {
     //this.loadDae();
     this.animate();
     //this.getmenu();
-  }
-
-  componentWillUnmount() {
-
   }
 
   init = ()=>{
