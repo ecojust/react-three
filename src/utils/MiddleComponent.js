@@ -8,7 +8,6 @@ class MiddleComponent extends Component {
 		this.$store = $store;
 		this.$route = route.getRoute();
 		this.mounted = true;
-
 	}
 	setData = (obj)=>{
 		if(this.mounted){

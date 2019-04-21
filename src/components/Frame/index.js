@@ -66,7 +66,7 @@ export class Frame extends MiddleComponent {
 			  		desc:'一个运动的椅子模型'
 			  	},
 			  	{
-			  		title:'option2',
+			  		title:'cube',
 			  		to:'/three_2',
 			  		desc:'一个运动立方体'
 			  	},

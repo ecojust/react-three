@@ -1,6 +1,7 @@
 import {MiddleComponent,React} from '../../../utils/MiddleComponent'
 import * as THREE from "three"
 
+
 export class demo2 extends MiddleComponent {
 	constructor(props){
 		super(props);
@@ -21,13 +22,8 @@ export class demo2 extends MiddleComponent {
     this.init();
     this.add();
     this.animate();
-    
-    console.log(this.$route);
   }
 
-  componentWillUnmount() {
-
-  }
   init = ()=>{
     var dom = document.getElementById('webgl');
     const width = dom.clientWidth;
