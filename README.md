@@ -19,13 +19,19 @@ In the project directory, you can run:
 ## about this project
 
 写这个demo项目，旨在简化react项目中各种工具的搭建，让大家写react项目的时候，能够像vue那样简便
+
 比如，vue的一些路由操作直接可以通过 this.$route 对象进行操作，有了这个demo，你也可以在react项目中实现上述简洁操作
-又比如，vue中的状态管理工具VueX，对应react中也有redux,有了这个demo，你可以在页面中通过 this.$store 来访问和操作，事先定义好的Reducer
+
+又比如，vue中的状态管理工具VueX，对应react中也有redux,有了这个demo，你可以在页面中通过 this.$store 来访问和操作事先定义好的Reducer
+
 后期将会复制其他在vue中便捷的操作到react中，例如axios，敬请期待
 
 
 ## 注意
-为了实现上述功能，我们的所有组件/页面要继承自一个新的类：MiddleComponent；它就在 /src/utils/MiddleComponent 下，当然这并不影响你像之前写页面的方式(继承自react的Component类)
+为了实现上述功能，我们的所有组件/页面要继承自一个新的类：MiddleComponent；
+
+它就在 /src/utils/MiddleComponent 下，当然这并不影响你像之前写页面的方式(继承自react的Component类)
+
 如果你想采用新的方式写组件(继承自MiddleComponent)，你的单个组件/页面的js文件要这样写：
 
 #### import {MiddleComponent,React} from '../../utils/MiddleComponent';
