@@ -14,7 +14,7 @@ export class demo1 extends MiddleComponent {
     this.mouse = null;
     this.height = null;
     this.width = null;
-    console.log(this.$store);
+    console.log(this.$route);
 	}
 	
 

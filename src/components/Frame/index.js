@@ -40,23 +40,23 @@ export class Frame extends MiddleComponent {
 			//   	}
 			//   ]
 			// },
-			// {
-			//   title:'pixi',
-			//   children:[
-			//   	{
-			//   		title:'option1',
-			//   		to:'pixi_1'
-			//   	},
-			//   	{
-			//   		title:'option2',
-			//   		to:'pixi_2'
-			//   	},
-			//   	{
-			//   		title:'option3',
-			//   		to:'pixi_3'
-			//   	}
-			//   ]
-			// },
+			{
+			  title:'pixi',
+			  children:[
+			  	{
+			  		title:'option1',
+			  		to:'/pixi_1'
+			  	},
+			  	{
+			  		title:'option2',
+			  		to:'/pixi_2'
+			  	},
+			  	{
+			  		title:'option3',
+			  		to:'/pixi_3'
+			  	}
+			  ]
+			},
 			{
 			  title:'three',
 			  children:[
@@ -68,12 +68,12 @@ export class Frame extends MiddleComponent {
 			  	{
 			  		title:'option2',
 			  		to:'/three_2',
-			  		desc:'一个运动的椅子模型2'
+			  		desc:'一个运动立方体'
 			  	},
 			  	{
 			  		title:'option3',
 			  		to:'/three_3',
-			  		desc:'一个运动的椅子模型3'
+			  		desc:''
 			  	}
 			  ]
 			},
@@ -118,7 +118,7 @@ export class Frame extends MiddleComponent {
 	//点击菜单更新对应描述文字
 	showTitle = (desc)=>{
 		this.setData({
-			title:desc
+			title:desc||'暂无简介!'
 		})
 	}
 	

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import {MiddleComponent,React} from '../../../utils/MiddleComponent'
 import * as THREE from "three"
 
-export class demo1 extends Component {
+export class demo2 extends MiddleComponent {
 	constructor(props){
 		super(props);
     this.camera=null;
@@ -21,6 +21,8 @@ export class demo1 extends Component {
     this.init();
     this.add();
     this.animate();
+    
+    console.log(this.$route);
   }
 
   componentWillUnmount() {
