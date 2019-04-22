@@ -103,17 +103,17 @@ export class Frame extends MiddleComponent {
 		let path = this.$route.path;
 		if(path){
 			var menu = this.menu;
-		var desc = '';
-		menu.map((item)=>{
-			item.children.map((items)=>{
-				if(~path.indexOf(items.to)){
-						desc = items.desc||'暂无简介!';
-				}
-				return items;
-			})
-			return item;
-		});
-	  	this.state.title = desc;
+			var desc = '';
+			menu.map((item)=>{
+				item.children.map((items)=>{
+					if(~path.indexOf(items.to)){
+							desc = items.desc||'暂无简介!';
+					}
+					return items;
+				})
+				return item;
+			});
+		  	this.state.title = desc;
 		}
 		
 	}

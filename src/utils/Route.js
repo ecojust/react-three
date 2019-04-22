@@ -11,37 +11,37 @@ function refresh(){
 	//路由参数格式化为对象
 	if(path){
 		var queryStr = path.split('?')[1];
-	var queryObject = {}; 
-	if(queryStr){
-		var queryArray = queryStr.split('&');
-		queryArray.map((item)=>{
-			var arr = item.split('=');
-			queryObject[arr[0]] = arr[1];
-			return item;
-		})
-	}
-	var push = (obj)=>{
-		var to = origin + pathname +'#'; 
-		console.log(obj.toString())
-		if(Object.prototype.toString.call(obj) !== '[object Object]'){
-			console.error('非法参数(不是一个对象)');
-			return;
-		}else{
-			const topath = obj.path,query = obj.query;
-			if(query&&Object.prototype.toString.call(query) !== '[object Object]'){
-				console.error('非法参数(query不是一个对象)');
-				return;
-			}
-			var queryString = '';
-			var ask = '';
-			for (var key in query) {
-				ask = '?';
-				queryString += key + '=' + query[key] + '&';
-			}
-			queryString = queryString.substr(0,queryString.length-1);
-			window.location.href = to + topath + ask + queryString;
+		var queryObject = {}; 
+		if(queryStr){
+			var queryArray = queryStr.split('&');
+			queryArray.map((item)=>{
+				var arr = item.split('=');
+				queryObject[arr[0]] = arr[1];
+				return item;
+			})
 		}
-	}
+		var push = (obj)=>{
+			var to = origin + pathname +'#'; 
+			console.log(obj.toString())
+			if(Object.prototype.toString.call(obj) !== '[object Object]'){
+				console.error('非法参数(不是一个对象)');
+				return;
+			}else{
+				const topath = obj.path,query = obj.query;
+				if(query&&Object.prototype.toString.call(query) !== '[object Object]'){
+					console.error('非法参数(query不是一个对象)');
+					return;
+				}
+				var queryString = '';
+				var ask = '';
+				for (var key in query) {
+					ask = '?';
+					queryString += key + '=' + query[key] + '&';
+				}
+				queryString = queryString.substr(0,queryString.length-1);
+				window.location.href = to + topath + ask + queryString;
+			}
+		}
 	}
 	
 

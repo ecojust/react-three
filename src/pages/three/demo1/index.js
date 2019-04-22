@@ -1,13 +1,25 @@
 import {MiddleComponent,React} from '../../../utils/MiddleComponent'
 
+import { Input } from '../../../components/Input'
+
 
 export class demo1 extends MiddleComponent {
 	constructor(props){
 		super(props);
+    this.state = {
+      model:{
+        key:'model',
+        value:'tom'
+      }
+    }
 	}
   render() {
     return (
-       <iframe title="loader" frameBorder="no" src="/html/loadjson.html" id="webgl" style={{width:'100%',height:'100%'}}></iframe>
+      <div>
+        <Input value={ this.state.model } update={this.update}/>
+        { this.state.model.value }
+      </div>
+       
     );
   }
   componentDidMount() {
