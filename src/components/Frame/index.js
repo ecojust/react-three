@@ -101,7 +101,8 @@ export class Frame extends MiddleComponent {
 	//初始化高亮菜单
 	initHeightLight = (type)=>{
 		let path = this.$route.path;
-		var menu = this.menu;
+		if(path){
+			var menu = this.menu;
 		var desc = '';
 		menu.map((item)=>{
 			item.children.map((items)=>{
@@ -113,6 +114,8 @@ export class Frame extends MiddleComponent {
 			return item;
 		});
 	  	this.state.title = desc;
+		}
+		
 	}
 
 	//点击菜单更新对应描述文字

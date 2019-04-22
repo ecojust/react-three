@@ -9,7 +9,8 @@ function refresh(){
 	var path = hash.split('#')[1];
 
 	//路由参数格式化为对象
-	var queryStr = path.split('?')[1];
+	if(path){
+		var queryStr = path.split('?')[1];
 	var queryObject = {}; 
 	if(queryStr){
 		var queryArray = queryStr.split('&');
@@ -41,6 +42,8 @@ function refresh(){
 			window.location.href = to + topath + ask + queryString;
 		}
 	}
+	}
+	
 
 	//浏览器url_history
 	var history = window.history;
