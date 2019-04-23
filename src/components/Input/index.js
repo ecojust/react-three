@@ -5,13 +5,13 @@ import './index.css';
 export class Input extends MiddleComponent {
 	constructor(props){
 		super(props);
+    	this.copyProps2State();
 	}
 	render() {
 	    return (
-	    	<input value={this.props.value.value}  onChange={this.handleChange.bind(this,this.props.value.key)}></input>
+	    	<input value={this.state.value}  onChange={this.handleChange.bind(this)}></input>
 	    );
 	}
-
 
   
 }
