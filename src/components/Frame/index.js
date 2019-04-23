@@ -41,22 +41,32 @@ export class Frame extends MiddleComponent {
 			//   ]
 			// },
 			{
-			  title:'pixi',
+			  title:'react',
 			  children:[
 			  	{
-			  		title:'option1',
-			  		to:'/pixi_1'
+			  		title:'vmodel',
+			  		to:'/vmodel',
+			  		desc:'基于监听器和事件的双向数据绑定'
 			  	},
-			  	{
-			  		title:'option2',
-			  		to:'/pixi_2'
-			  	},
-			  	{
-			  		title:'option3',
-			  		to:'/pixi_3'
-			  	}
 			  ]
 			},
+			// {
+			//   title:'pixi',
+			//   children:[
+			//   	{
+			//   		title:'option1',
+			//   		to:'/pixi_1'
+			//   	},
+			//   	{
+			//   		title:'option2',
+			//   		to:'/pixi_2'
+			//   	},
+			//   	{
+			//   		title:'option3',
+			//   		to:'/pixi_3'
+			//   	}
+			//   ]
+			// },
 			{
 			  title:'three',
 			  children:[
@@ -70,11 +80,11 @@ export class Frame extends MiddleComponent {
 			  		to:'/three_2',
 			  		desc:'一个运动立方体'
 			  	},
-			  	{
-			  		title:'option3',
-			  		to:'/three_3',
-			  		desc:''
-			  	}
+			  	// {
+			  	// 	title:'option3',
+			  	// 	to:'/three_3',
+			  	// 	desc:''
+			  	// }
 			  ]
 			},
 			// {
@@ -130,7 +140,7 @@ export class Frame extends MiddleComponent {
 		var menu = this.menuDom();
 		return withRouter(({history})=>{
 			return (
-				<Menu  theme="dark" mode="inline" selectedKeys={[history.location.pathname]} defaultOpenKeys={['d3','pixi','three','shader']}>
+				<Menu  theme="dark" mode="inline" selectedKeys={[history.location.pathname]} defaultOpenKeys={['react','d3','pixi','three','shader']}>
 					{ menu }
 				</Menu>
 			)
