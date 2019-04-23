@@ -80,8 +80,6 @@ class MiddleComponent extends Component {
     		}
     	}
     	this.newState[key] = updateData;
-    	var old_v = JSON.stringify(this.oldState);
-		var new_v = JSON.stringify(this.newState);
     	var obj = {};
     	obj[updateKey] = updateData;
     	if(!this.lock){
