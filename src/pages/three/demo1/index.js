@@ -16,7 +16,9 @@ export class demo1 extends MiddleComponent {
     return (
       <div>
         这是子组件的值：<Input value={ this.state.name } update={this.update}/><br />
+
         这是父组件的值：{ this.state.name }  <br />
+        
         <button onClick={this.click.bind(this)}>将父组件name值置为"桔子桑"</button>
       </div>
     );

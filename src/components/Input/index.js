@@ -12,8 +12,6 @@ export class Input extends MiddleComponent {
 	    	<input value={this.state.value}  onChange={this.handleChange.bind(this)}></input>
 	    );
 	}
-
-  
 }
 
   
