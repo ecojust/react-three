@@ -49,7 +49,7 @@ In the project directory, you can run:
 不难看出，这是redux的文件目录，我们在MiddleComponent.js文件中用相对路径引入了它，所以，你最好不要移动它
 
 #### `/src/utils`  
-这个文件夹下面已存在的文件，你最好不要动，它这个项目的核所在！
+这个文件夹下面已存在的文件，你最好不要动，它这个项目的核心所在！
 
 ## 项目预览
 
