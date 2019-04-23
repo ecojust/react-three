@@ -7,6 +7,7 @@ class MiddleComponent extends Component {
 		super(props);
 		this.$store = $store;
 		this.$route = route.getRoute();
+		this.state = {};
 		this.mounted = true;
 		var vm = this;
 		var temp = null;
