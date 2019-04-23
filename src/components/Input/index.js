@@ -10,8 +10,8 @@ export class Input extends MiddleComponent {
 	render() {
 	    return (
 	    	<div>
-	    	<input value={this.state.value}  onChange={this.handleChange.bind(this)}></input>
-	    	<span> { this.state.value } </span>
+	    	<input value={this.state.model}  onChange={this.handleChange.bind(this)}></input>
+	    	<span> { this.state.model } </span>
 	    	</div>
 	    );
 	}

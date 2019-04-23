@@ -8,6 +8,8 @@ export class vmodel extends MiddleComponent {
 		super(props);
     this.state = {
       name:'tom',
+
+    	gender:'tom',
       age:90
     };
     this.copyProps2State();
@@ -15,7 +17,7 @@ export class vmodel extends MiddleComponent {
   render() {
     return (
       <div>
-        这是子组件的值：<Input value={ this.state.name } update={this.update}/><br />
+        这是子组件的值：<Input model={ this.state.name } update={this.update}/><br />
 
         这是父组件的值：{ this.state.name }  <br />
         

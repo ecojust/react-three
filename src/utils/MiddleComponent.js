@@ -59,14 +59,14 @@ class MiddleComponent extends Component {
 	}
 	componentWillReceiveProps(nextProps) {
 	      this.setState({
-	        value: nextProps.value,
+	        model: nextProps.model,
 	      })
-	      this.updateData = nextProps.value;
+	      this.updateData = nextProps.model;
   	}
 	handleChange =(e)=>{
 		this.updateData = e.target.value;
 		this.setState({
-			value:e.target.value
+			model:e.target.value
 		})
     }
     update = (value,updateData)=>{
