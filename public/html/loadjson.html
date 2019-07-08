@@ -18,9 +18,11 @@
 <script src="../lib/stats.min.js"></script>
 <script src="../lib/dat.gui.min.js"></script>
 <script src="../lib/OrbitControl.js"></script>
+<script src="../lib/GLTFLoader.js"></script>
+<script src="../lib/ModelUtils.js"></script>
+
 
 	<script type="module">
-
 
 	var renderer;
     function initRender() {
@@ -36,7 +38,7 @@
     var camera;
     function initCamera() {
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 4, 5);
+        camera.position.set(0, 150, 150);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
     }
 
@@ -51,6 +53,9 @@
 
     var light;
     function initLight() {
+        var dirLight = new THREE.DirectionalLight(0xFFFFFF);
+            dirLight.position.set(0,70,0);
+            scene.add(dirLight);
         light = new THREE.SpotLight(0xffffff);
         light.position.set(0.5,2,0);
         light.angle = Math.PI/3;
@@ -68,6 +73,55 @@
         loader.load("/model/chair.json",function (obj) {
             scene.add(obj);
         });
+    }
+
+
+    function loadgltf(){
+        var gltfLoader = new THREE.GLTFLoader();
+        gltfLoader.load('/model/touch.gltf', function(gltf) {
+            scene.add(gltf.scene) // 将模型添加到场景中
+        })
+        gltfLoader.load('/model/global.gltf', function(result) {
+            //console.log(gltf)
+            let gltf = cloneGltf(result);
+            //let gltf = result;
+            gltf.scene.traverse(it => {
+                        if (it.scale) {
+                            it.scale.x = it.scale.x || 0.0001;
+                            it.scale.y = it.scale.y || 0.0001;
+                            it.scale.z = it.scale.z || 0.0001;
+                        }
+
+                        if (it.isMesh) {
+                            it.castShadow = true;
+                            // it.receiveShadow = true;
+                        }
+                        if (it.material) {
+                            // if (it.material.opacity < 1) {
+                            //     it.material.side = THREE.BackSide;
+                            //     it.material.depthTest = it.material.depthWrite = false;
+                            // }
+                            // else
+                            it.material.side = THREE.DoubleSide;
+
+                            if (it.material.name.endsWith("steel")) {
+                                it.material.roughness = 0.0;
+                                it.material.metalness = 0.2;
+                            }
+                            else if (it.name.endsWith("Plane184")) {
+                                it.material.roughness = 1;
+                                it.material.metalness = 0;
+                                it.material.color = new THREE.Color(0xAAAAAA);
+                            }
+                            else if (it.material.type === "MeshStandardMaterial") {
+                                it.material.roughness = 0.8;
+                                it.material.metalness = 0.5;
+                            }
+                        }
+
+                    });
+            scene.add(gltf.scene) // 将模型添加到场景中
+        })
     }
 
     var texture;
@@ -184,7 +238,8 @@
         initScene();
         initCamera();
         initLight();
-        loadModel();
+        //loadModel();
+        loadgltf();
         //initGui();
         initControls();
         initStats();
