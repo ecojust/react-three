@@ -8,6 +8,7 @@
 .bin
 # testing
 /coverage
+/model
 
 # production
 /build
