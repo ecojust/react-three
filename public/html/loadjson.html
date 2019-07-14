@@ -747,7 +747,18 @@
             globeMesh.rotation.x += 0.01;
             globeMesh.rotation.y += 0.02;
         }
-        flyline.material.uniforms.time.value += 1.0;
+        var time = flyline.material.uniforms.time.value;
+        if(time > 700){
+            type = 'reduce';
+        }
+        if(time < 300){
+            type = 'add'
+        }
+        if(type == 'add'){
+            flyline.material.uniforms.time.value += 1.0;
+        }else{
+            flyline.material.uniforms.time.value -= 1.0;
+        }
         renderer.render(scene, camera);
         // if(!lock){
         //     compose.render(delta)  
