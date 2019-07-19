@@ -22,21 +22,6 @@
 <script src="../lib/ModelUtils.js"></script>
 <script src="../lib/OutlinePass.js"></script>
 
-<!-- 顶点着色器 -->
-<script id="vertex-shader" type="x-shader/x-vertex">
-    uniform float time;
-    varying vec2 vUv;
-
-    void main(){
-        vec3 posChanged = position;
-        //posChanged.x = posChanged.x*(abs(sin(time*1.0)));
-        //posChanged.y = posChanged.y*(abs(cos(time*1.0)));
-        //posChanged.z = posChanged.z*(abs(sin(time*1.0)));
-        //gl_Position = projectionMatrix * modelViewMatrix * vec4(position*(abs(sin(time)/2.0)+0.5),1.0);
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(posChanged,1.0);
-    }
-
-</script>
 
 <!-- 片元着色器 -->
 <script id="fragment-shader-1" type="x-shader/x-fragment">
@@ -320,23 +305,58 @@
 </script>
 
 
+<!-- 顶点着色器 -->
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+    
+    varying vec3 iPosition;
+
+    void main(){
+        iPosition = vec3(position);
+        float x = position.x;
+
+
+        float pointsize = (x + 70.)/70.;
+        
+        gl_PointSize = pointsize * 1.3;
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+    }
+
+</script>
+
 <script id="fragment-shader-7" type="x-shader/x-fragment">
 
     
     uniform float time;
-    uniform vec2 resolution;
+    uniform float size;
+
+    varying vec3 iPosition;
+
 
 
     void main( void ) {
         float start = time;
-        float end = start + 20.0;
+        float end = start + size;
 
-        float opacity = 0.0;
-        if(gl_FragCoord.x > start && gl_FragCoord.x < end){
-            opacity = 1.0;
+        float step = 0.2;
+
+        vec4 color = vec4(0.123,0.435,0.612,0.0);
+        if(iPosition.x > start && iPosition.x < end){
+            float dx = iPosition.x - time;
+            float ca = fract(dx/size);
+            color = vec4(ca/1.9,ca,ca/1.6,1.0);
         }
-        gl_FragColor = vec4(1.0,1.0,1.0,opacity);
-        //gl_FragColor = vec4(1.0,1.0,1.0,1.0);
+
+
+        float d = distance(gl_PointCoord, vec2(0.5, 0.5));
+        if(abs(iPosition.x - end) < 0.2 || abs(iPosition.x - start) < 0.2){
+            if(d > 0.1){
+                discard;
+            }
+        }
+
+        gl_FragColor = color;
 
     }
 
@@ -441,13 +461,14 @@
             new THREE.Vector3( 35, 100, 0 ),
             new THREE.Vector3( 70, 0, 0 )
         );
-        var points = curve.getPoints( 50 );
+        var points = curve.getPoints( 5000 );
 
-        var geometry = new THREE.BufferGeometry().setFromPoints( points );
-        // var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+        var geometry = new THREE.Geometry();
+        geometry.vertices = points;
+        //var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
         var material = createMaterial("vertex-shader", "fragment-shader-7");
 
-        flyline = new THREE.Line( geometry, material );
+        flyline = new THREE.PointCloud( geometry, material );
 
         scene.add(flyline);
     }
@@ -505,7 +526,8 @@
         var attributes = {};
         //配置着色器里面的uniform变量的值
         var uniforms = {
-            time: {type: 'f', value: 1.0},
+            time: {type: 'f', value: -70.0},
+            size:{type:'f',value:20.0},
             scale: {type: 'f', value: 0.2},
             alpha: {type: 'f', value: 0.6},
             resolution: {type: "v2", value: new THREE.Vector2(window.innerWidth, window.innerHeight)}
@@ -747,34 +769,26 @@
             globeMesh.rotation.x += 0.01;
             globeMesh.rotation.y += 0.02;
         }
-        var time = flyline.material.uniforms.time.value;
-        if(time > 700){
-            type = 'reduce';
-        }
-        if(time < 300){
-            type = 'add'
-        }
-        if(type == 'add'){
-            flyline.material.uniforms.time.value += 1.0;
-        }else{
-            flyline.material.uniforms.time.value -= 1.0;
-        }
-        renderer.render(scene, camera);
-        // if(!lock){
-        //     compose.render(delta)  
-        // }
-        //if(cube){
-        //cube.material.uniforms.time.value += 0.01;
-        //}
-        //cube.material.forEach(function (e) {
-            //e.uniforms.time.value += 0.01;
-        //});
+        if(flyline && flyline.material.uniforms){
+            var time = flyline.material.uniforms.time.value;
+            if(time > 70){
+                flyline.material.uniforms.time.value = -70.0;
 
-        // if(clickgeo){
-        //         clickgeo.material.uniforms.time.value += 0.01;
-        //         console.log(clickgeo.material.uniforms.time.value)
-        // }
+                //type = 'reduce';
+            }
+            flyline.material.uniforms.time.value += 1.0;
+
+            // if(time < -70){
+            //     type = 'add'
+            // }
+            // if(type == 'add'){
+            //     flyline.material.uniforms.time.value += 1.0;
+            // }else{
+            //     flyline.material.uniforms.time.value -= 1.0;
+            // }
+        }
         
+        renderer.render(scene, camera);
     }
     //窗口变动触发的函数
     function onWindowResize() {
